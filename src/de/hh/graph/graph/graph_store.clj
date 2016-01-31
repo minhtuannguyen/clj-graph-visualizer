@@ -17,12 +17,11 @@
 (defrecord Graph []
   component/Lifecycle
   (start [self]
-    (log/info "starting Graph")
+    (log/info "starting GraphStore")
     (let [self (assoc self :graph (atom (create-graph)))]
       self))
   (stop [_]
-    (log/info "stoping  Graph"))
-
+    (log/info "stoping  GraphStore"))
   Igraph
   (nodes [self] (g/nodes @(:graph self)))
   (edges [self] (g/edges @(:graph self)))

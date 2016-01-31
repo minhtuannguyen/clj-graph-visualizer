@@ -20,7 +20,6 @@
                    :unit    :unit
                    :focused :focused}
   :profiles {
-             :test    {:env {:config-file "test.edn"}}
              :uberjar {:aot :all}
              :dev     {:dependencies []
                        :plugins      [[com.jakemccrary/lein-test-refresh "0.11.0"]]}})
