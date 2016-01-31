@@ -1,0 +1,14 @@
+<configuration>
+    <contextName>graph-visualizer</contextName>
+    <appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level - %m%n</pattern>
+        </encoder>
+    </appender>
+    <logger name="de.hh.graph" level="info" additivity="false">
+        <appender-ref ref="consoleAppender"/>
+    </logger>
+    <root level="${log_level:-info}">
+        <appender-ref ref="consoleAppender"/>
+    </root>
+</configuration>
