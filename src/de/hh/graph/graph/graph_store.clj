@@ -6,10 +6,10 @@
 (defprotocol Igraph
   (nodes [self])
   (edges [self])
-  (add-node [self])
-  (add-edge [self]))
+  (add-node! [self node])
+  (add-edge! [self edge]))
 
-(defn create-graph []
+(defn- create-graph []
   (let [graph (g/digraph)]
     (g/add-nodes graph "root")))
 
@@ -25,8 +25,10 @@
   Igraph
   (nodes [self] (g/nodes @(:graph self)))
   (edges [self] (g/edges @(:graph self)))
-  (add-node [self])
-  (add-edge [self]))
+  (add-node! [self node]
+    (swap! (:graph self) g/add-nodes node))
+  (add-edge! [self edge]
+    (swap! (:graph self) g/add-edges edge)))
 
 (defn new-graph []
   (map->Graph {}))

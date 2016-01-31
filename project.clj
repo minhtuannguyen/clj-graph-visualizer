@@ -4,6 +4,7 @@
             :url  "http://www.eclipse.org/legal/epl-v10.html"}
   :uberjar-name ~(str "graph-visualizer.jar")
   :main ^:skip-aot de.hh.graph.core
+  :test-paths ["test" "test-resources"]
   :dependencies [[org.clojure/clojure "1.8.0"]
                  [com.stuartsierra/component "0.3.0"]
                  [de.otto/tesla-microservice "0.1.26"]
@@ -15,4 +16,11 @@
                  [aysylu/loom "0.5.4"]
                  [me.lomin/component-restart "0.1.0"]]
   :target-path "target/%s"
-  :profiles {:uberjar {:aot :all}})
+  :test-selectors {:default (constantly true)
+                   :unit    :unit
+                   :focused :focused}
+  :profiles {
+             :test    {:env {:config-file "test.edn"}}
+             :uberjar {:aot :all}
+             :dev     {:dependencies []
+                       :plugins      [[com.jakemccrary/lein-test-refresh "0.11.0"]]}})
