@@ -1,0 +1,62 @@
+{
+  "type": "NetworkGraph",
+  "label": "Ninux Roma",
+  "protocol": "OLSR",
+  "version": "0.6.6.2",
+  "metric": "ETX",
+  "nodes": [
+    {
+      "id": "node0"
+    },
+    {
+      "id": "root"
+    },
+    {
+      "id": "node1"
+    },
+    {
+      "id": "node2"
+    },
+    {
+      "id": "child1"
+    },
+    {
+      "id": "child2"
+    },
+    {
+      "id": "child0"
+    }
+  ],
+  "links": [
+    {
+      "source": "node0",
+      "target": "child0",
+      "cost": "1.0"
+    },
+    {
+      "source": "root",
+      "target": "node0",
+      "cost": "1.0"
+    },
+    {
+      "source": "root",
+      "target": "node1",
+      "cost": "1.0"
+    },
+    {
+      "source": "root",
+      "target": "node2",
+      "cost": "1.0"
+    },
+    {
+      "source": "node1",
+      "target": "child1",
+      "cost": "1.0"
+    },
+    {
+      "source": "node2",
+      "target": "child2",
+      "cost": "1.0"
+    }
+  ]
+}

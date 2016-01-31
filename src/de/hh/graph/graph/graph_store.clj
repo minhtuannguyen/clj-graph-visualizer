@@ -6,6 +6,7 @@
 (defprotocol Igraph
   (nodes [self])
   (edges [self])
+  (reset-graph! [self])
   (add-node! [self node])
   (add-edge! [self edge]))
 
@@ -25,6 +26,7 @@
   Igraph
   (nodes [self] (g/nodes @(:graph self)))
   (edges [self] (g/edges @(:graph self)))
+  (reset-graph! [self] (reset! (:graph self) (create-graph)))
   (add-node! [self node]
     (swap! (:graph self) g/add-nodes node))
   (add-edge! [self edge]

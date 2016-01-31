@@ -37,13 +37,19 @@
     (gs/add-edge! graph [parent child]))
   {:status 200})
 
+(defn reset-graph [graph]
+  (log/info "reset graph")
+  (gs/reset-graph! graph)
+  {:status 200})
+
 (defn routes [graph]
   (cpj/routes
     (cpj/GET "/view/" request (view/html))
     (cpj/GET "/view/resources/css/netjsongraph.css/" request (clojure.core/slurp "resources/css/netjsongraph.css"))
     (cpj/GET "/view/resources/js/netjsongraph.js/" request (clojure.core/slurp "resources/libs/netjsongraph.js"))
     (cpj/GET "/view/graph/" request (get-representation-of graph))
-    (cpj/POST "/addnode/" request (add-node graph request))))
+    (cpj/POST "/node/" request (add-node graph request))
+    (cpj/DELETE "/node/" request (reset-graph graph))))
 
 (defrecord Visualizer [handler graph]
   component/Lifecycle

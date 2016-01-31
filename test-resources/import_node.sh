@@ -1,7 +1,21 @@
 #!/bin/bash
 
-for var in  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
+if [ -z $1 ]; then
+  echo "number is mandatory"
+  exit 1;
+fi
+
+count=1
+limit=`echo "$1" | bc`
+
+curl -X DELETE http://localhost:8080/node/
+
+until [ ! $count -lt  $limit ]
 do
-	curl -X POST --data "parent=root&id=node$var" http://localhost:8080/addnode/
-	curl -X POST --data "parent=node$var&id=child$var" http://localhost:8080/addnode/
+    echo "add node $count"
+	curl -X POST --data "parent=root&id=node$count" http://localhost:8080/node/
+	curl -X POST --data "parent=node$count&id=child$count" http://localhost:8080/node/
+	count=$((count+1))
 done
+
+echo "DONE!"
