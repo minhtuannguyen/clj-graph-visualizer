@@ -6,12 +6,28 @@
             [de.hh.graph.graph.graph-store :as gs]
             [clojure.walk :as cw]
             [ring.util.codec :as rc]
+            [clojure.data.json :as json]
+            [ring.util.response :as r]
             [de.otto.tesla.stateful.handler :as handler]
             [compojure.core :as cpj]))
 
+(defn- node-representation [node]
+  {:id node})
+
+(defn- edge-representation [edge]
+  {:source (first edge)
+   :target (second edge)
+   :cost   "1.0"})
+
 (defn get-representation-of [graph]
-  (log/info "get graph representation")
-  (str (gs/nodes graph)))
+  (log/info "get graph representation of graph")
+  (r/response (json/write-str {:type     "NetworkGraph",
+                               :label    "Ninux Roma",
+                               :protocol "OLSR",
+                               :version  "0.6.6.2",
+                               :metric   "ETX",
+                               :nodes    (map node-representation (gs/nodes graph)),
+                               :links    (map edge-representation (gs/edges graph))})))
 
 (defn add-node [graph request]
   (let [{parent :parent child :id} (cw/keywordize-keys (rc/form-decode (slurp (:body request))))]
@@ -26,7 +42,6 @@
     (cpj/GET "/view/" request (view/html))
     (cpj/GET "/view/resources/css/netjsongraph.css/" request (clojure.core/slurp "resources/css/netjsongraph.css"))
     (cpj/GET "/view/resources/js/netjsongraph.js/" request (clojure.core/slurp "resources/libs/netjsongraph.js"))
-    (cpj/GET "/view/data/" request (clojure.core/slurp "resources/netjson.json"))
     (cpj/GET "/view/graph/" request (get-representation-of graph))
     (cpj/POST "/addnode/" request (add-node graph request))))
 
