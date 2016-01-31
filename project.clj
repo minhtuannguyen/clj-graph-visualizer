@@ -12,6 +12,7 @@
                  [ring "1.4.0"]
                  [compojure "1.4.0"]
                  [enlive "1.1.6"]
+                 [aysylu/loom "0.5.4"]
                  [me.lomin/component-restart "0.1.0"]]
   :target-path "target/%s"
   :profiles {:uberjar {:aot :all}})
