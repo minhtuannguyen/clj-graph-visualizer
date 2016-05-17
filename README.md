@@ -15,9 +15,9 @@ Initialy the graph only has the root names "root".
     $ ./test-resources/import_node.sh 10 https://clj-graph-visualizer.herokuapp.com/
 
     //to reset the graph, which then only has the root
-    $curl -X DELETE http://localhost:8080/node/
+    $curl -X DELETE https://clj-graph-visualizer.herokuapp.com/node/
 
-The view can be seen under: [my demo app](https://clj-graph-visualizer.herokuapp.com/ "my demo app")
+The view can be seen under: [my demo app](https://clj-graph-visualizer.herokuapp.com/view/ "my demo app")
 
 ## Examples deployed locally
 Initialy the graph only has the root names "root".
