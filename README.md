@@ -23,7 +23,7 @@ The view can be seen under: [my demo app](https://clj-graph-visualizer.herokuapp
 Initialy the graph only has the root names "root".
 
     //to add a node to the graph
-    $ curl -X POST --data "parent=root&id=nodename" http://localhost:8080/node/
+    $ curl -X POST --data "parent=root&id=nodename" http://localhost:8080/node
     
     //to reset the graph, which then only has the root
     $curl -X DELETE http://localhost:8080/node/
