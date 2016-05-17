@@ -6,10 +6,20 @@ clj-graph-visualizer is just an experiment to evaluate how [netjsongraph](https:
     $ ./lein.sh uberjar
 
 ## Usage
-
     $ java -jar clj-graph-visualizer1-0.1.0-standalone.jar
 
-## Examples
+## Demo
+Initialy the graph only has the root names "root".
+
+    //to add 10 nodes to the graph
+    $ ./test-resources/import_node.sh 10 https://clj-graph-visualizer.herokuapp.com/
+
+    //to reset the graph, which then only has the root
+    $curl -X DELETE http://localhost:8080/node/
+
+The view can be seen under: [my demo app](https://clj-graph-visualizer.herokuapp.com/ "my demo app")
+
+## Examples deployed locally
 Initialy the graph only has the root names "root".
 
     //to add a node to the graph
